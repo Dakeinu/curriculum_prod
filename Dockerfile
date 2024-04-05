@@ -4,9 +4,6 @@ FROM node:latest as build-stage
 # Définir le répertoire de travail dans le conteneur
 WORKDIR /app
 
-#Vider les anciens fichiers
-RUN rm -rf /app/*
-
 # Installer pnpm
 RUN npm install -g pnpm
 
@@ -32,8 +29,7 @@ COPY --from=build-stage /app/dist /usr/share/nginx/html
 # Copier le fichier de configuration Nginx (présumé se trouver dans le contexte de construction)
 COPY nginx.conf /etc/nginx/conf.d/default.conf
 
-# Exposer le port 80
-EXPOSE 80
+# Exposer le port 3000
 EXPOSE 3000
 
 # Lancer Nginx
