@@ -76,6 +76,7 @@ jobs:
             echo "::set-output name=site-status::down"
           else
             echo "::set-output name=site-status::up"
+          fi
 
   notification:
     needs: [build-and-push, check-site]
